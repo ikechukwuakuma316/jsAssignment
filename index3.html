@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Background Color Changer</title>
+</head>
+<body>
+  <label for="colorInput">Enter a color:</label>
+  <input type="text" id="colorInput" placeholder="e.g. #ff0000 or red">
+  <button onclick="changeBackgroundColor()">Change Background Color</button>
+
+  <script>
+    function changeBackgroundColor() {
+      const colorInput = document.getElementById('colorInput').value;
+      document.body.style.backgroundColor = colorInput;
+    }
+  </script>
+</body>
+</html>

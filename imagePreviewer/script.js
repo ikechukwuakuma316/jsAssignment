@@ -1,18 +1,17 @@
 // Get the input elements
-const imageUrlInputElement = document.getElementById('imageUrlInput');
+const fileInputElement = document.getElementById('fileInput');
 const imageContainerElement = document.getElementById('imageContainer');
 const previewButtonElement = document.getElementById('previewButton');
 
 previewButtonElement.addEventListener('click', function() {
-    const imageUrl = imageUrlInputElement.value;
-
     // Clear any existing content in the image container
     imageContainerElement.innerHTML = '';
 
-    if (imageUrl) {
+    const file = fileInputElement.files[0];
+    if (file) {
         // Create an image element
         const img = document.createElement('img');
-        img.src = imageUrl;
+        img.src = URL.createObjectURL(file);
         img.alt = 'Image Preview';
 
         // Create a download button
@@ -22,8 +21,8 @@ previewButtonElement.addEventListener('click', function() {
 
         downloadButton.addEventListener('click', function() {
             const a = document.createElement('a');
-            a.href = imageUrl;
-            a.download = '';
+            a.href = img.src;
+            a.download = file.name;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -33,6 +32,6 @@ previewButtonElement.addEventListener('click', function() {
         imageContainerElement.appendChild(img);
         imageContainerElement.appendChild(downloadButton);
     } else {
-        alert('Please enter a valid image URL.');
+        alert('Please select a file.');
     }
 });
